@@ -11,7 +11,7 @@ import Foundation
 internal protocol ActionProtocol{
     
     //static var actionName : String { get set }
-    //static var actionShortHand : String { get <#set#> }
+    //static var actionShortHand : String { get set }
     
     /// Function to execute the Action
     static func execute() -> Void
