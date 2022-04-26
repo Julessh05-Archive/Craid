@@ -53,6 +53,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-h"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "clear-moodle"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

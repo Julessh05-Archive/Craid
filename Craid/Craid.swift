@@ -9,35 +9,48 @@ import Foundation
 
 /// Enum to define if the Option is passed
 /// as a character or a Word
-enum OptionsType {
+private enum OptionsType {
     case char
     case word
     case noOption
 }
 
 /// The different Options you can pass to the Programm
-enum Options : String {
+private enum Options : String {
     /// The Option to show  the Help
     case help = "h"
     /// Everything else
-    case unknown
+    case action
     
     init(option : String) {
         switch option {
         case "h" : self = .help
-        default : self = .unknown
+        default : self = .action
+        }
+    }
+}
+
+/// All the Actions avaible with Craid
+private enum Action : String {
+    /// Action to delete the Moodle Downloads Folder
+    case clearMoodle = "clear-moodle"
+    /// The Passed Action isn't an Action
+    case noAction
+    
+    init(action : String) {
+        switch action {
+        case "clear-moodle" : self = .clearMoodle
+        default : self = .noAction
         }
     }
 }
 
 /// The main Struct which holds the actual Tool
-struct Craid {
-    let craidIO : CraidIO = CraidIO();
-    
+internal struct Craid {
     /// The Method called when the Programm starts
-    func start() -> Void {
+    internal func start() -> Void {
         // Show help
-        craidIO.showHelp()
+        CraidIO.showHelp()
         
         // Get Arguments Count
         let argumentCount : Int32 = CommandLine.argc
@@ -45,32 +58,94 @@ struct Craid {
         // Get first Argument (Option)
         // The Index 1 is used, because the index
         // 0 is always the Name of the Executable
+        /// First Option Argument after the Executable Name
         let optionArgument : String = CommandLine.arguments[1]
         
+        //Create
+        /// Option the User passed
         let option : Options = getOption(option: optionArgument)
         
-        craidIO.communicate(message: "The Option Count is: \(argumentCount)")
-        craidIO.communicate(message: "The Option is \(option)")
+        /// Some Debug Information
+        // TODO: remove
+        CraidIO.communicate(message: "The Option Count is: \(argumentCount)")
+        CraidIO.communicate(message: "The Option is \(option)")
     }
     
     /// Getter for the Options passed to the Program when an Input
     /// is entered
-    func getOption(option : String) -> Options {
+    private func getOption(option : String) -> Options {
         
+        // Convert Option to Array
+        /// Option as Array to get the single Chars from the String
+        let optionAsList : [Character] = Array(option)
+        
+        // Placeholder for OptionsType
         let optionsType : OptionsType
         
-        let dash : Character = "-"
-        
-        if option.first == "-" {
-            if option.index(option.startIndex, offsetBy: 1) == dash {
+        if optionAsList[0] == "-" {
+            if optionAsList[1] == "-" {
+                // Long Version of the Option. Is shown trough 2 dashes
                 optionsType = .word
             } else {
+                // Short Version of the Option. Is shown trough 1 dash
                 optionsType = .char
             }
         } else {
+            // No Option
             optionsType = .noOption
         }
-        let optionsToPass : String = String(option[])
+        
+        var optionsToPass : String = option
+        switch optionsType {
+            // Short Version of Options
+        case .char:
+            // Remove the single dash
+            optionsToPass.removeFirst()
+            // Long Version of Options
+        case .word:
+            // Remove the double dash
+            for _ in 1...2 {
+                optionsToPass.removeFirst()
+            }
+            // No Option
+        case .noOption:
+            // No Option -> Action
+            executeAction(action: getAction())
+        }
         return Options(option: optionsToPass)
+    }
+    
+    /// If no Option is passed, get the Action the User wanted to execute
+    private func getAction() -> Action {
+        return Action(action: CommandLine.arguments[1])
+    }
+    
+    
+    /// Checks the Action and executes it, if it is a valid Action
+    private func executeAction(action : Action) -> Void {
+        switch action {
+            // User wants the Moodle Directory to be cleared
+        case .clearMoodle:
+            // Check if File exists
+            if FileManager.default.fileExists(atPath: UserFileSystem.getMoodlePath().path) {
+                // File Exists
+                do {
+                    // Try to remove the Directory
+                    try FileManager.default.removeItem(at: UserFileSystem.getMoodlePath())
+                    // Error was thrown
+                } catch let fileError {
+                    // Show the Error and some help
+                    CraidIO.communicate(message: "\(fileError)", whereTo: .error)
+                    CraidIO.showOnError()
+                }
+            } else {
+                // The Directory does not exist
+                CraidIO.communicate(message: "Directory does not exist \(UserFileSystem.getMoodlePath())")
+                CraidIO.showOnError()
+            }
+            // User has entered no Option. So the Error Indicator is shown
+        case .noAction:
+            CraidIO.showOnError()
+        }
     }
 }
