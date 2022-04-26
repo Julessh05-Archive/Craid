@@ -25,18 +25,18 @@ internal struct CraidIO {
     /// Method to communicate with the User
     static internal func communicate (message: String, whereTo: OutputType = .standard) -> Void {
         switch whereTo {
-            // Standard Output
+            /// Standard Output
         case .standard:
             print(message)
-            // Error Output
+            /// Error Output
         case .error:
             print("Error: \(message)")
             // puts something somewhere to the Error output
             //fputs(message, stderr)
-            // important Output
+            /// Important Output
         case .important:
             print(message.uppercased())
-            // Silent Outpu
+            /// Silent Outpu
         case .silent:
             print(message.lowercased())
         }

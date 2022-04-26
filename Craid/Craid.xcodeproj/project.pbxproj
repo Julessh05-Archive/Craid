@@ -11,6 +11,8 @@
 		3F77A2952815C98F00798616 /* Craid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77A2942815C98F00798616 /* Craid.swift */; };
 		3F7B72CF28186B6B007E0AA2 /* UserFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B72CE28186B6B007E0AA2 /* UserFileSystem.swift */; };
 		3F8D5F812815C34E005D34FC /* CraidIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D5F802815C34E005D34FC /* CraidIO.swift */; };
+		3FF33334281880890053994C /* ClearMoodle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF33333281880890053994C /* ClearMoodle.swift */; };
+		3FF33336281880BB0053994C /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF33335281880BB0053994C /* ActionProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,8 @@
 		3F77A2942815C98F00798616 /* Craid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Craid.swift; sourceTree = "<group>"; };
 		3F7B72CE28186B6B007E0AA2 /* UserFileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFileSystem.swift; sourceTree = "<group>"; };
 		3F8D5F802815C34E005D34FC /* CraidIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraidIO.swift; sourceTree = "<group>"; };
+		3FF33333281880890053994C /* ClearMoodle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearMoodle.swift; sourceTree = "<group>"; };
+		3FF33335281880BB0053994C /* ActionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 		3F6BC10C27FEDC3A000A2C5A = {
 			isa = PBXGroup;
 			children = (
+				3FF333322818807D0053994C /* Actions */,
 				3F7B72CD28186B2D007E0AA2 /* Values */,
 				3F6BC11827FEDC3A000A2C5A /* main.swift */,
 				3F8D5F802815C34E005D34FC /* CraidIO.swift */,
@@ -69,6 +74,15 @@
 				3F7B72CE28186B6B007E0AA2 /* UserFileSystem.swift */,
 			);
 			path = Values;
+			sourceTree = "<group>";
+		};
+		3FF333322818807D0053994C /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				3FF33333281880890053994C /* ClearMoodle.swift */,
+				3FF33335281880BB0053994C /* ActionProtocol.swift */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F6BC11927FEDC3A000A2C5A /* main.swift in Sources */,
+				3FF33336281880BB0053994C /* ActionProtocol.swift in Sources */,
+				3FF33334281880890053994C /* ClearMoodle.swift in Sources */,
 				3F8D5F812815C34E005D34FC /* CraidIO.swift in Sources */,
 				3F77A2952815C98F00798616 /* Craid.swift in Sources */,
 				3F7B72CF28186B6B007E0AA2 /* UserFileSystem.swift in Sources */,

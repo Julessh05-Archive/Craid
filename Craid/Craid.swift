@@ -126,23 +126,7 @@ internal struct Craid {
         switch action {
             // User wants the Moodle Directory to be cleared
         case .clearMoodle:
-            // Check if File exists
-            if FileManager.default.fileExists(atPath: UserFileSystem.getMoodlePath().path) {
-                // File Exists
-                do {
-                    // Try to remove the Directory
-                    try FileManager.default.removeItem(at: UserFileSystem.getMoodlePath())
-                    // Error was thrown
-                } catch let fileError {
-                    // Show the Error and some help
-                    CraidIO.communicate(message: "\(fileError)", whereTo: .error)
-                    CraidIO.showOnError()
-                }
-            } else {
-                // The Directory does not exist
-                CraidIO.communicate(message: "Directory does not exist \(UserFileSystem.getMoodlePath())")
-                CraidIO.showOnError()
-            }
+            ClearMoodle.execute()
             // User has entered no Option. So the Error Indicator is shown
         case .noAction:
             CraidIO.showOnError()
