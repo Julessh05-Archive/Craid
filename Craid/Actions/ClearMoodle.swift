@@ -10,6 +10,13 @@ import Foundation
 /// Struct that executes the clear-moodle Action
 internal struct ClearMoodle : ActionProtocol {
     
+    /// The Name of the Action
+    static var actionName: String = "clear-moodle"
+    
+    /// The Name of the short Hand
+    static var actionShortHand: String? = "cm"
+    
+    
     /// Deletes the Moodle Documents Directory
     static internal func execute() -> Void {
         // Create
@@ -38,5 +45,10 @@ internal struct ClearMoodle : ActionProtocol {
                 CraidIO.showOnError()
             }
         }
+    }
+    
+    /// Shows the Help for the ClearMoodle Action
+    static func showOnHelp() {
+        CraidIO.communicate(message: "The clear-moodle Action lets you delete your moodle Data, so you safe a little space on your local drive")
     }
 }

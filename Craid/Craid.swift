@@ -10,8 +10,17 @@ import Foundation
 /// Enum to define if the Option is passed
 /// as a character or a Word
 private enum OptionsType {
+    /// The Option Type as a Char
+    /// This is the shorthand and has to be entered
+    /// with a single dash ( - )
     case char
+    
+    /// The Option Type as a complete Word
+    /// This is the complete word and has to be entered
+    /// with two dashes ( -- )
     case word
+    
+    /// No Option
     case noOption
 }
 
@@ -19,12 +28,19 @@ private enum OptionsType {
 private enum Options : String {
     /// The Option to show  the Help
     case help = "h"
+    
+    /// get the Version
+    case version = "v"
+    
     /// Everything else
     case action
     
     init(option : String) {
         switch option {
         case "h" : self = .help
+        case "help": self = .help
+        case "v": self = .version
+        case "version": self = .version
         default : self = .action
         }
     }
@@ -39,7 +55,8 @@ private enum Action : String {
     
     init(action : String) {
         switch action {
-        case "clear-moodle" : self = .clearMoodle
+        case ClearMoodle.actionName : self = .clearMoodle
+        case ClearMoodle.actionShortHand: self = .clearMoodle
         default : self = .noAction
         }
     }
@@ -47,10 +64,14 @@ private enum Action : String {
 
 /// The main Struct which holds the actual Tool
 internal struct Craid {
+    
+    /// The Version of this Program as a String
+    static internal let version : String = "1.0.0"
+    
     /// The Method called when the Programm starts
     internal func start() -> Void {
         // Show help
-        CraidIO.showHelp()
+        Help.execute()
         
         // Get Arguments Count
         let argumentCount : Int32 = CommandLine.argc
@@ -101,6 +122,7 @@ internal struct Craid {
         case .char:
             // Remove the single dash
             optionsToPass.removeFirst()
+            
             // Long Version of Options
         case .word:
             // Remove the double dash

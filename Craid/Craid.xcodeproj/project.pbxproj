@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F21454028192C510064D8F9 /* OptionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21453F28192C510064D8F9 /* OptionsProtocol.swift */; };
 		3F6BC11927FEDC3A000A2C5A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BC11827FEDC3A000A2C5A /* main.swift */; };
 		3F77A2952815C98F00798616 /* Craid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77A2942815C98F00798616 /* Craid.swift */; };
 		3F7B72CF28186B6B007E0AA2 /* UserFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B72CE28186B6B007E0AA2 /* UserFileSystem.swift */; };
 		3F8D5F812815C34E005D34FC /* CraidIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D5F802815C34E005D34FC /* CraidIO.swift */; };
+		3FE026532819CCD70035C426 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE026522819CCD70035C426 /* Help.swift */; };
 		3FF33334281880890053994C /* ClearMoodle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF33333281880890053994C /* ClearMoodle.swift */; };
 		3FF33336281880BB0053994C /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF33335281880BB0053994C /* ActionProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -28,11 +30,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F21453F28192C510064D8F9 /* OptionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsProtocol.swift; sourceTree = "<group>"; };
 		3F6BC11527FEDC3A000A2C5A /* Craid */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Craid; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6BC11827FEDC3A000A2C5A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3F77A2942815C98F00798616 /* Craid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Craid.swift; sourceTree = "<group>"; };
 		3F7B72CE28186B6B007E0AA2 /* UserFileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFileSystem.swift; sourceTree = "<group>"; };
 		3F8D5F802815C34E005D34FC /* CraidIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraidIO.swift; sourceTree = "<group>"; };
+		3FE026522819CCD70035C426 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		3FF33333281880890053994C /* ClearMoodle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearMoodle.swift; sourceTree = "<group>"; };
 		3FF33335281880BB0053994C /* ActionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,9 +52,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F21453E28192C440064D8F9 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				3F21453F28192C510064D8F9 /* OptionsProtocol.swift */,
+				3FE026522819CCD70035C426 /* Help.swift */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
 		3F6BC10C27FEDC3A000A2C5A = {
 			isa = PBXGroup;
 			children = (
+				3F21453E28192C440064D8F9 /* Options */,
 				3FF333322818807D0053994C /* Actions */,
 				3F7B72CD28186B2D007E0AA2 /* Values */,
 				3F6BC11827FEDC3A000A2C5A /* main.swift */,
@@ -147,7 +161,9 @@
 				3FF33336281880BB0053994C /* ActionProtocol.swift in Sources */,
 				3FF33334281880890053994C /* ClearMoodle.swift in Sources */,
 				3F8D5F812815C34E005D34FC /* CraidIO.swift in Sources */,
+				3F21454028192C510064D8F9 /* OptionsProtocol.swift in Sources */,
 				3F77A2952815C98F00798616 /* Craid.swift in Sources */,
+				3FE026532819CCD70035C426 /* Help.swift in Sources */,
 				3F7B72CF28186B6B007E0AA2 /* UserFileSystem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

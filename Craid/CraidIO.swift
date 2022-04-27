@@ -46,8 +46,8 @@ internal struct CraidIO {
     /// Prints some Usage Information to the Console
     static internal func showHelp() -> Void {
         communicate(message: "Hello Sir, how can I help you?")
-        communicate(message: "Type craid -h for help")
-        communicate(message: "Type clear-moodle to clear the local moodle Documents Directory")
+        communicate(message: "Type craid -h or craid --help for help")
+        communicate(message: "Type clear-moodle (cm) to clear the local moodle Documents Directory")
     }
     
     /// Function called if the Program run into an Error or the User

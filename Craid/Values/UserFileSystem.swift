@@ -11,17 +11,15 @@ import Foundation
 /// different from User to User
 internal struct UserFileSystem {
     
-    /// Method which try's to find the Moodle Path on the local Machine
+    /// Returns the Path of the Moodle Installation Container .
+    /// Usually there the Data are stored
     static internal func getMoodlePath () -> URL {
-        return moodlePath
+        return  URL(fileURLWithPath:  "\(FileManager.default.homeDirectoryForCurrentUser.path)/Library/Containers/com.moodle.moodledesktop/Data/Documents/com.moodle.moodlemobile/sites/")
     }
     
     /// Returns the Directory above the Moodle Directory
     /// Used to check if the Directory does not exist or if you deleted it previously
     static internal func getPreMoodlePath() -> URL {
-        return URL(fileURLWithPath: "\(FileManager.default.homeDirectoryForCurrentUser.path)//Library/Containers/com.moodle.moodledesktop/Data/Documents/com.moodle.moodlemobile/")
+        return URL(fileURLWithPath: "\(FileManager.default.homeDirectoryForCurrentUser.path)/Library/Containers/com.moodle.moodledesktop/Data/Documents/com.moodle.moodlemobile/")
     }
-    
-    /// The URL / Path to the Moodle Directory
-    static private var moodlePath : URL = URL(fileURLWithPath:  "\(FileManager.default.homeDirectoryForCurrentUser.path)/Library/Containers/com.moodle.moodledesktop/Data/Documents/com.moodle.moodlemobile/sites/")
 }
