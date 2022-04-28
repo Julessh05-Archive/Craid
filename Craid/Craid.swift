@@ -25,23 +25,25 @@ private enum OptionsType {
 }
 
 /// The different Options you can pass to the Programm
-private enum Options : String {
+private enum Option : String {
     /// The Option to show  the Help
-    case help = "h"
+    case help = "help"
+    case helpShort = "h"
     
     /// get the Version
-    case version = "v"
+    case version = "version"
+    case versionShort = "v"
     
     /// Everything else
-    case action
+    case unidentified
     
     init(option : String) {
         switch option {
-        case "h" : self = .help
+        case "h" : self = .helpShort
         case "help": self = .help
-        case "v": self = .version
+        case "v": self = .versionShort
         case "version": self = .version
-        default : self = .action
+        default : self = .unidentified
         }
     }
 }
@@ -55,8 +57,8 @@ private enum Action : String {
     
     init(action : String) {
         switch action {
-        case ClearMoodle.actionName : self = .clearMoodle
-        case ClearMoodle.actionShortHand: self = .clearMoodle
+        case ClearMoodleAction.actionName : self = .clearMoodle
+        case ClearMoodleAction.actionShortHand: self = .clearMoodle
         default : self = .noAction
         }
     }
@@ -70,11 +72,6 @@ internal struct Craid {
     
     /// The Method called when the Programm starts
     internal func start() -> Void {
-        // Show help
-        Help.execute()
-        
-        // Get Arguments Count
-        let argumentCount : Int32 = CommandLine.argc
         
         // Get first Argument (Option)
         // The Index 1 is used, because the index
@@ -82,19 +79,12 @@ internal struct Craid {
         /// First Option Argument after the Executable Name
         let optionArgument : String = CommandLine.arguments[1]
         
-        //Create
-        /// Option the User passed
-        let option : Options = getOption(option: optionArgument)
-        
-        /// Some Debug Information
-        // TODO: remove
-        CraidIO.communicate(message: "The Option Count is: \(argumentCount)")
-        CraidIO.communicate(message: "The Option is \(option)")
+        /// Check Input and execute the Action / Option
+        checkInput(option: optionArgument)
     }
     
-    /// Getter for the Options passed to the Program when an Input
-    /// is entered
-    private func getOption(option : String) -> Options {
+    /// Checks the Input and executes the Action or Option
+    private func checkInput(option : String) -> Void {
         
         // Convert Option to Array
         /// Option as Array to get the single Chars from the String
@@ -122,33 +112,72 @@ internal struct Craid {
         case .char:
             // Remove the single dash
             optionsToPass.removeFirst()
-            
+            executeOption(option: getOption(option: optionsToPass, type: optionsType))
+        
             // Long Version of Options
         case .word:
             // Remove the double dash
             for _ in 1...2 {
                 optionsToPass.removeFirst()
             }
+            executeOption(option: getOption(option: optionsToPass, type: optionsType))
+            
             // No Option
         case .noOption:
             // No Option -> Action
             executeAction(action: getAction())
         }
-        return Options(option: optionsToPass)
+    }
+    
+    /// Returnst the Option the User entered
+    private func getOption(option : String, type : OptionsType) -> Option {
+        if type == .word {
+            switch Option(option: option) {
+            case .help:
+                return .help
+            case .version:
+                return .version
+            default:
+                return .unidentified
+            }
+        } else if type == .char {
+            switch Option(option: option) {
+            case .helpShort:
+                return .help
+            case .versionShort:
+                return .version
+            default:
+                return .unidentified
+            }
+        
+        } else {
+            return .unidentified
+        }
     }
     
     /// If no Option is passed, get the Action the User wanted to execute
     private func getAction() -> Action {
         return Action(action: CommandLine.arguments[1])
     }
-    
-    
+
+    /// Checks the Option and executes the Action connected to it
+    private func executeOption(option: Option) -> Void {
+        switch option {
+        case .help:
+            HelpOption.execute()
+        case .version:
+            VersionOption.execute()
+        default:
+            HelpOption.execute()
+        }
+    }
+        
     /// Checks the Action and executes it, if it is a valid Action
     private func executeAction(action : Action) -> Void {
         switch action {
             // User wants the Moodle Directory to be cleared
         case .clearMoodle:
-            ClearMoodle.execute()
+            ClearMoodleAction.execute()
             // User has entered no Option. So the Error Indicator is shown
         case .noAction:
             CraidIO.showOnError()

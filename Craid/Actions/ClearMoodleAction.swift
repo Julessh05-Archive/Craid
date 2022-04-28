@@ -1,5 +1,5 @@
 //
-//  ClearMoodle.swift
+//  ClearMoodleAction.swift
 //  Craid
 //
 //  Created by Julian Schumacher on 26.04.22.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Struct that executes the clear-moodle Action
-internal struct ClearMoodle : ActionProtocol {
+internal struct ClearMoodleAction : ActionProtocol {
     
     /// The Name of the Action
     static var actionName: String = "clear-moodle"

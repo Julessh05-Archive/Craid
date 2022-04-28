@@ -1,5 +1,5 @@
 //
-//  Help.swift
+//  HelpOption.swift
 //  Craid
 //
 //  Created by Julian Schumacher on 27.04.22.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// The Option Help.
-internal struct Help : OptionsProtocol {
+internal struct HelpOption : OptionsProtocol {
     
     /// What to enter to get to the Help
     static var optionsName: String = "help"
