@@ -38,6 +38,7 @@ internal struct ClearMoodleAction : ActionProtocol {
                 CraidIO.communicate(message: "\(fileError)", whereTo: .error)
                 CraidIO.showOnError()
             }
+            CraidIO.communicate(message: "Cleared Moodle Directory successfullys")
         } else {
             // The Directory does not exist
             if fileManager.fileExists(atPath: UserFileSystem.getPreMoodlePath().path) {
