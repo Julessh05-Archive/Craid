@@ -17,10 +17,18 @@ internal protocol ActionProtocol{
     /// This can be nil (null), because not every action has a shorthand
     static var actionShortHand : String? { get }
     
+    /// The Options you can enter behind the Action Name
+    /// Every Action has at least one Option ( -h )
+    /// This Options calls the showOnHelp() Method
+    static var options : [Option] { get }
+    
     /// This Function is called when the User types -h or --help behind
     /// a specific Action
     static func showOnHelp() -> Void
     
     /// Function to execute the Action
     static func execute() -> Void
+    
+    /// The Execute Function called when an Option is passed
+    static func execute(option : Option) -> Void
 }

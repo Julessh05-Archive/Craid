@@ -11,10 +11,10 @@ import Foundation
 internal struct HelpOption : OptionsProtocol {
     
     /// What to enter to get to the Help
-    static var optionsName: String = "help"
+    static var optionsName: String = "--help"
     
     /// The Shorthand h for help
-    static var optionsShortHand: String? = "h"
+    static var optionsShortHand: String? = "-h"
     
     /// What is shown when you type help -h or help --help
     static func showOnHelp() {

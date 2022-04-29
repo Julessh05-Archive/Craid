@@ -16,6 +16,9 @@ internal struct ClearMoodleAction : ActionProtocol {
     /// The Name of the short Hand
     static var actionShortHand: String? = "cm"
     
+    /// The Options specified for the ClearMoodle Action
+    static var options: [Option] = [.help]
+    
     
     /// Deletes the Moodle Documents Directory
     static internal func execute() -> Void {
@@ -44,6 +47,21 @@ internal struct ClearMoodleAction : ActionProtocol {
                 CraidIO.communicate(message: "Directory does not exist \(UserFileSystem.getMoodlePath())")
                 CraidIO.showOnError()
             }
+        }
+    }
+    
+    /// The Function called when the User entered an Option behind the Action Name
+    static internal func execute(option : Option) -> Void {
+        if options.contains(option) {
+            switch option {
+            case .help:
+                showOnHelp()
+                break
+            default:
+                break
+            }
+        } else {
+            CraidIO.showOnError()
         }
     }
     

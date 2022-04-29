@@ -56,12 +56,16 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "clear-moodle --help"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "cm"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-v"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "clear-moodle"

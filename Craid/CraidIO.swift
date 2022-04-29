@@ -28,17 +28,21 @@ internal struct CraidIO {
             /// Standard Output
         case .standard:
             print(message)
+            break
             /// Error Output
         case .error:
             print("Error: \(message)")
+            break
             // puts something somewhere to the Error output
             //fputs(message, stderr)
             /// Important Output
         case .important:
             print(message.uppercased())
+            break
             /// Silent Outpu
         case .silent:
             print(message.lowercased())
+            break
         }
     }
     
