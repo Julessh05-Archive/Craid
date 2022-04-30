@@ -39,15 +39,15 @@ internal struct ClearMoodleAction : ActionProtocol {
                 CraidIO.showOnError()
             }
             CraidIO.communicate(message: "Cleared Moodle Directory successfully")
+        } else if fileManager.fileExists(atPath: UserFileSystem.getPreMoodlePath().path) {
+            CraidIO.communicate(message: "You executed this Command and cleared the Directory already.")
+            CraidIO.communicate(message: "Since the last Time you did it, moodle did not store any Data")
+        } else if !fileManager.fileExists(atPath: UserFileSystem.getMoodleAppPath().path) {
+            CraidIO.communicate(message: "You don't have Moodle installed, so this command won't work")
+            CraidIO.communicate(message: "It's also pretty useless")
         } else {
-            // The Directory does not exist
-            if fileManager.fileExists(atPath: UserFileSystem.getPreMoodlePath().path) {
-                CraidIO.communicate(message: "You executed this Command and cleared the Directory already.")
-                CraidIO.communicate(message: "Since the last Time you did it, moodle did not store any Data")
-            } else {
-                CraidIO.communicate(message: "Directory does not exist \(UserFileSystem.getMoodlePath())")
-                CraidIO.showOnError()
-            }
+            CraidIO.communicate(message: "Directory does not exist \(UserFileSystem.getMoodlePath())")
+            CraidIO.showOnError()
         }
     }
     
