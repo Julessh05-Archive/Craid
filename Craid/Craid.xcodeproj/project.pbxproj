@@ -31,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F1793A22820432C00D4488D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Translations.strings; sourceTree = "<group>"; };
+		3F1793A42820432E00D4488D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Translations.strings; sourceTree = "<group>"; };
 		3F21453F28192C510064D8F9 /* OptionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsProtocol.swift; sourceTree = "<group>"; };
 		3F48802B281AFBE00022B7C9 /* VersionOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionOption.swift; sourceTree = "<group>"; };
 		3F6BC11527FEDC3A000A2C5A /* Craid */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Craid; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				3F7B72CE28186B6B007E0AA2 /* UserFileSystem.swift */,
+				3F1793A32820432C00D4488D /* Translations.strings */,
 			);
 			path = Values;
 			sourceTree = "<group>";
@@ -174,6 +177,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3F1793A32820432C00D4488D /* Translations.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F1793A22820432C00D4488D /* en */,
+				3F1793A42820432E00D4488D /* de */,
+			);
+			name = Translations.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3F6BC11A27FEDC3A000A2C5A /* Debug */ = {
