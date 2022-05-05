@@ -61,4 +61,10 @@ internal struct CraidIO {
         communicate(message: "Please excuse the Errow, we're working hard to find and remove all Bugs")
         showHelp()
     }
+    
+    static internal showOnNotEnoughArguments() -> Void {
+        communicate(message: "This Action needs more Arguments.")
+        communicate(message: "Please provide these Arguments")
+        communicate(message: "Type {action} -h or  --help for the Action Help")
+    }
 }

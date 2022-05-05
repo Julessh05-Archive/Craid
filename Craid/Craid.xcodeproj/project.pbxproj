@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3F21454028192C510064D8F9 /* OptionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21453F28192C510064D8F9 /* OptionsProtocol.swift */; };
 		3F48802C281AFBE00022B7C9 /* VersionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F48802B281AFBE00022B7C9 /* VersionOption.swift */; };
+		3F677E602823D326007C6FC1 /* TimeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F677E5F2823D326007C6FC1 /* TimeAction.swift */; };
+		3F677E632823D537007C6FC1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F677E622823D537007C6FC1 /* Converter.swift */; };
 		3F6BC11927FEDC3A000A2C5A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BC11827FEDC3A000A2C5A /* main.swift */; };
 		3F77A2952815C98F00798616 /* Craid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77A2942815C98F00798616 /* Craid.swift */; };
 		3F7B72CF28186B6B007E0AA2 /* UserFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B72CE28186B6B007E0AA2 /* UserFileSystem.swift */; };
@@ -35,6 +37,8 @@
 		3F1793A42820432E00D4488D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Translations.strings; sourceTree = "<group>"; };
 		3F21453F28192C510064D8F9 /* OptionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsProtocol.swift; sourceTree = "<group>"; };
 		3F48802B281AFBE00022B7C9 /* VersionOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionOption.swift; sourceTree = "<group>"; };
+		3F677E5F2823D326007C6FC1 /* TimeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAction.swift; sourceTree = "<group>"; };
+		3F677E622823D537007C6FC1 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		3F6BC11527FEDC3A000A2C5A /* Craid */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Craid; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6BC11827FEDC3A000A2C5A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3F77A2942815C98F00798616 /* Craid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Craid.swift; sourceTree = "<group>"; };
@@ -66,9 +70,18 @@
 			path = Options;
 			sourceTree = "<group>";
 		};
+		3F677E612823D527007C6FC1 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				3F677E622823D537007C6FC1 /* Converter.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
 		3F6BC10C27FEDC3A000A2C5A = {
 			isa = PBXGroup;
 			children = (
+				3F677E612823D527007C6FC1 /* Logic */,
 				3F21453E28192C440064D8F9 /* Options */,
 				3FF333322818807D0053994C /* Actions */,
 				3F7B72CD28186B2D007E0AA2 /* Values */,
@@ -101,6 +114,7 @@
 			children = (
 				3FF33333281880890053994C /* ClearMoodleAction.swift */,
 				3FF33335281880BB0053994C /* ActionProtocol.swift */,
+				3F677E5F2823D326007C6FC1 /* TimeAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -165,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F6BC11927FEDC3A000A2C5A /* main.swift in Sources */,
+				3F677E632823D537007C6FC1 /* Converter.swift in Sources */,
 				3FF33336281880BB0053994C /* ActionProtocol.swift in Sources */,
 				3FF33334281880890053994C /* ClearMoodleAction.swift in Sources */,
 				3F8D5F812815C34E005D34FC /* CraidIO.swift in Sources */,
@@ -172,6 +187,7 @@
 				3F77A2952815C98F00798616 /* Craid.swift in Sources */,
 				3F48802C281AFBE00022B7C9 /* VersionOption.swift in Sources */,
 				3FE026532819CCD70035C426 /* HelpOption.swift in Sources */,
+				3F677E602823D326007C6FC1 /* TimeAction.swift in Sources */,
 				3F7B72CF28186B6B007E0AA2 /* UserFileSystem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

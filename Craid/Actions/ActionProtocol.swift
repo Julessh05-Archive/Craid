@@ -8,7 +8,7 @@
 import Foundation
 
 /// The Protocol all Actions need to match
-internal protocol ActionProtocol{
+internal protocol ActionProtocol {
 
     /// The Name of the Action.
     static var actionName : String { get }
@@ -16,6 +16,10 @@ internal protocol ActionProtocol{
     /// The Shorthand of the Action
     /// This can be nil (null), because not every action has a shorthand
     static var actionShortHand : String? { get }
+    
+    /// This Number indicates, how many Arguments this Action
+    /// takes. In some cases these are more than one.
+    static var arguemntsCount : Int { get }
     
     /// The Options you can enter behind the Action Name
     /// Every Action has at least one Option ( -h )

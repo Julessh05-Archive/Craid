@@ -16,6 +16,9 @@ internal struct ClearMoodleAction : ActionProtocol {
     /// The Name of the short Hand
     static var actionShortHand: String? = "cm"
     
+    /// This Action only takes one argument (clear-moodle)
+    static var arguemntsCount: Int = 1
+    
     /// The Options specified for the ClearMoodle Action
     static var options: [Option] = [.help]
     

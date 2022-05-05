@@ -20,18 +20,25 @@ internal enum Option : String {
     
     init(option : String) {
         switch option {
+            
+            // Help Options
         case "-h":
             self = .help
             break
+            
         case "--help":
             self = .help
             break
+            
+            // Version Options
         case "-v":
             self = .version
             break
+            
         case "--version":
             self = .version
             break
+            
         default:
             self = .unidentified
             break
@@ -43,17 +50,30 @@ internal enum Option : String {
 private enum Action : String {
     /// Action to delete the Moodle Downloads Folder
     case clearMoodle
+    
+    /// Get the Time in a specific Time Zone or City
+    case time
+    
     /// The Passed Action isn't an Action
     case noAction
     
     init(action : String) {
         switch action {
+            
+            // Clear Moodle Actions
         case ClearMoodleAction.actionName:
             self = .clearMoodle
             break
+            
         case ClearMoodleAction.actionShortHand:
             self = .clearMoodle
             break
+            
+            // Get Time Action
+        case TimeAction.actionName:
+            self = .time
+            break
+            
         default:
             self = .noAction
             break
@@ -76,12 +96,16 @@ internal struct Craid {
         /// First Option Argument after the Executable Name
         let optionArgument : String = CommandLine.arguments[1]
         
-        if optionArgument.first == "-" {
+        if Converter.isOption(string: optionArgument) {
             executeOption(option: getOption(option: optionArgument))
         } else {
             if CommandLine.arguments.count > 2 {
-                let optionForAction : String = CommandLine.arguments[2]
-                executeAction(action: getAction(), option: getOption(option: optionForAction))
+                if Converter.isOption(string: CommandLine.arguments[2]) {
+                    let optionForAction : String = CommandLine.arguments[2]
+                    executeAction(action: getAction(), option: getOption(option: optionForAction))
+                } else {
+                    return
+                }
             } else {
                 executeAction(action: getAction())
             }
@@ -101,12 +125,20 @@ internal struct Craid {
     /// Checks the Option and executes the Action connected to it
     private func executeOption(option: Option) -> Void {
         switch option {
+            // Show Help
         case .help:
             HelpOption.execute()
+            break
+            
+            // Return the Version Number of this Tool
         case .version:
             VersionOption.execute()
+            break
+            
+            /// Craid cound't  the Option, so the Help is shown
         default:
             HelpOption.execute()
+            break
         }
     }
     
@@ -116,9 +148,18 @@ internal struct Craid {
             // User wants the Moodle Directory to be cleared
         case .clearMoodle:
             ClearMoodleAction.execute()
+            break
+            
+            // The User has entered no Option to the Action. He wants to
+            // know a specific Time
+        case .time:
+            TimeAction.execute()
+            break
+            
             // User has entered no Option. So the Error Indicator is shown
         case .noAction:
             CraidIO.showOnError()
+            break
         }
     }
     
@@ -130,9 +171,42 @@ internal struct Craid {
             // User wants the Moodle Directory to be cleared
         case .clearMoodle:
             ClearMoodleAction.execute(option: option)
+            break
+            
+            // The User wants to know an Option for the Time Action
+        case .time:
+            TimeAction.execute(option: option)
+            break
+            
             // User has entered no Option. So the Error Indicator is shown
         case .noAction:
             CraidIO.showOnError()
+            break
+            
+        default:
+            CraidIO.showOnError()
+            break
+        }
+    }
+    
+    /// Checks the Action and executes it. The arguments are passed, when a specific Action
+    /// needs to have more information to run correclty.
+    /// This Action only checks the Action that have the Possibility to take arguments.
+    /// If you want to execute an Action without Arguments, use the executeAction Method without
+    /// any arguments passed
+    private func executeAction(action : Action, arguments : [String]) -> Void {
+        switch action {
+        case .time:
+            TimeAction.execute()
+            break
+            
+        case .noAction:
+            CraidIO.showOnError()
+            break
+            
+        default:
+            CraidIO.showOnError()
+            break
         }
     }
 }
