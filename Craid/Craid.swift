@@ -15,6 +15,9 @@ internal enum Option : String {
     /// get the Version
     case version
     
+    /// Returns the Information about this Tool
+    case information
+    
     /// Everything else
     case unidentified
     
@@ -22,21 +25,32 @@ internal enum Option : String {
         switch option {
             
             // Help Options
-        case "-h":
+        case HelpOption.optionsShortHand:
             self = .help
             break
             
-        case "--help":
+        case HelpOption.optionsName:
             self = .help
             break
             
             // Version Options
-        case "-v":
+        case VersionOption.optionsShortHand:
             self = .version
             break
             
-        case "--version":
+        case VersionOption.optionsName:
             self = .version
+            break
+            
+            // Information Options
+        case InformationOption.optionsName:
+            self = .information
+            break
+            
+            // TODO: find better solution
+            // This shouldn't be done like this
+        case "--info":
+            self = .information
             break
             
         default:
@@ -85,7 +99,7 @@ private enum Action : String {
 internal struct Craid {
     
     /// The Version of this Program as a String
-    static internal let version : String = "1.1.0"
+    static internal let version : String = "1.2.2"
     
     /// The Method called when the Programm starts
     internal func start() -> Void {
@@ -96,19 +110,23 @@ internal struct Craid {
         /// First Option Argument after the Executable Name
         let optionArgument : String = CommandLine.arguments[1]
         
-        if Converter.isOption(string: optionArgument) {
-            executeOption(option: getOption(option: optionArgument))
-        } else {
-            if CommandLine.arguments.count > 2 {
-                if Converter.isOption(string: CommandLine.arguments[2]) {
+        if CommandLine.argc > 2 {
+            if Converter.isOption(string: CommandLine.arguments[2]) {
+                if Converter.isOption(string: optionArgument) {
+                    let optionForOption : String = CommandLine.arguments[2]
+                    executeOption(option: getOption(option: optionArgument), secondOption: getOption(option: optionForOption))
+                } else {
                     let optionForAction : String = CommandLine.arguments[2]
                     executeAction(action: getAction(), option: getOption(option: optionForAction))
-                } else {
-                    return
                 }
             } else {
-                executeAction(action: getAction())
+                CraidIO.showOnError()
+                return
             }
+        } else if Converter.isOption(string: optionArgument){
+            executeOption(option: getOption(option: optionArgument))
+        } else {
+            executeAction(action: getAction())
         }
     }
     
@@ -135,29 +153,33 @@ internal struct Craid {
             VersionOption.execute()
             break
             
+            // Show the Information about this Tool
+        case .information:
+            InformationOption.execute()
+            break
+            
             /// Craid cound't  the Option, so the Help is shown
         default:
-            HelpOption.execute()
+            CraidIO.showOnError()
             break
         }
     }
     
-    /// Checks the Action and executes it, if it is a valid Action
-    private func executeAction(action : Action) -> Void {
-        switch action {
-            // User wants the Moodle Directory to be cleared
-        case .clearMoodle:
-            ClearMoodleAction.execute()
+    /// Checks the Option and the Option behind it to execute it
+    private func executeOption(option: Option, secondOption: Option) -> Void {
+        switch option {
+        case .help:
+            HelpOption.execute(option: secondOption)
             break
             
-            // The User has entered no Option to the Action. He wants to
-            // know a specific Time
-        case .time:
-            TimeAction.execute()
+        case .version:
+            VersionOption.execute(option: secondOption)
+            
+        case .information:
+            InformationOption.execute(option: secondOption)
             break
             
-            // User has entered no Option. So the Error Indicator is shown
-        case .noAction:
+        default:
             CraidIO.showOnError()
             break
         }
@@ -172,11 +194,11 @@ internal struct Craid {
         case .clearMoodle:
             ClearMoodleAction.execute(option: option)
             break
-            
+            // TODO: activate as soon as the action is implemented
             // The User wants to know an Option for the Time Action
-        case .time:
-            TimeAction.execute(option: option)
-            break
+            //        case .time:
+            //            TimeAction.execute(option: option)
+            //            break
             
             // User has entered no Option. So the Error Indicator is shown
         case .noAction:
@@ -194,11 +216,18 @@ internal struct Craid {
     /// This Action only checks the Action that have the Possibility to take arguments.
     /// If you want to execute an Action without Arguments, use the executeAction Method without
     /// any arguments passed
-    private func executeAction(action : Action, arguments : [String]) -> Void {
+    private func executeAction(action : Action, arguments : [Any]? = nil) -> Void {
         switch action {
-        case .time:
-            TimeAction.execute()
+            
+            // Execute the Clear Moodle Action and delete the Documents Folder in the Container
+        case .clearMoodle:
+            ClearMoodleAction.execute()
             break
+            // TODO: activate as soon as the action is implemented
+            // Execute the Time Action
+            //        case .time:
+            //            TimeAction.execute(args: arguments)
+            //            break
             
         case .noAction:
             CraidIO.showOnError()

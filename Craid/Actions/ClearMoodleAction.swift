@@ -8,7 +8,7 @@
 import Foundation
 
 /// Struct that executes the clear-moodle Action
-internal struct ClearMoodleAction : ActionProtocol {
+internal struct ClearMoodleAction : FullActionProtocol {
     
     /// The Name of the Action
     static var actionName: String = "clear-moodle"
@@ -24,7 +24,8 @@ internal struct ClearMoodleAction : ActionProtocol {
     
     
     /// Deletes the Moodle Documents Directory
-    static internal func execute() -> Void {
+    /// The Arguments shouldn't be used, because this Action does not take any Arguments
+    static internal func execute(args : [Any]? = nil) -> Void {
         // Create
         /// FIleManager Object to execute Actions
         let fileManager : FileManager = FileManager.default

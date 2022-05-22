@@ -7,35 +7,30 @@
 
 import Foundation
 
-internal struct TimeAction : ActionProtocol {
+internal struct TimeAction : SmallActionProtocol {
     
     /// The Name of the Action Time.
     /// This is only the first Word, the so called "Trigger Word".
     /// This Word indicates the Action.
     static var actionName: String = "time"
     
-    /// DO NOT USE THIS.
-    /// Shorthand is always null.
-    @available(*, unavailable)
-    static var actionShortHand: String?
+    /// This shows, that the time Action needs 3 arguments.
+    /// The first one is time, the second one in and the last one the
+    /// capital.
+    static let arguemntsCount: Int = 3
     
-    static var arguemntsCount: Int = 3
-    
+    /// The avaible options for this Action
     static var options: [Option] = [.help]
     
     static func showOnHelp() {
         
     }
     
-    static func execute() {
+    static func execute(args : [Any]?) {
         CraidIO.showOnNotEnoughArguments()
     }
     
     static func execute(option: Option) {
-        
-    }
-    
-    static func execute(where : String) -> Void {
         
     }
     

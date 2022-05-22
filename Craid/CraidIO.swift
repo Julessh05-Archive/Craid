@@ -50,19 +50,31 @@ internal struct CraidIO {
     /// Prints some Usage Information to the Console
     static internal func showHelp() -> Void {
         communicate(message: "Hello Sir, how can I help you?")
-        communicate(message: "Type craid -h or craid --help for help")
-        communicate(message: "Type clear-moodle (cm) to clear the local moodle Documents Directory")
+        communicate(message: "Options:")
+        communicate(message: "craid -h or craid --help for help")
+        communicate(message: "craid -v or craid --version for the version information")
+        communicate(message: "")
+        communicate(message: "Actions:")
+        communicate(message: "craid clear-moodle or craid cm to clear your moodle documents directory")
+        communicate(message: "")
+        // TODO: show after implementing the Function
+        //communicate(message: "craid time in cityname to get the current time in another city (currently only capitals)")
+        communicate(message: "Aditional Information:")
+        communicate(message: "Type -h or --help after an action to get more specific information about that action")
     }
     
     /// Function called if the Program run into an Error or the User
     /// entered something the Program can't resolve
     static internal func showOnError() -> Void {
         communicate(message: "Something went wrong")
-        communicate(message: "Please excuse the Errow, we're working hard to find and remove all Bugs")
-        showHelp()
+        communicate(message: "Either this action is not avaible, you've got a typo, or something internal went wrong")
+        communicate(message: "Please check the Spelling for Typos")
+        communicate(message: "Please excuse the Circumstances, we're working hard to find and remove all Bugs")
+        communicate(message: "If you have concerns, contact the Administrator through a Github Issue")
     }
     
-    static internal showOnNotEnoughArguments() -> Void {
+    /// This is called when an Action that needs one or more arguments is called with zero arguments
+    static internal func showOnNotEnoughArguments() -> Void {
         communicate(message: "This Action needs more Arguments.")
         communicate(message: "Please provide these Arguments")
         communicate(message: "Type {action} -h or  --help for the Action Help")
