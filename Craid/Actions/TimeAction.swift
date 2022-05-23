@@ -22,16 +22,29 @@ internal struct TimeAction : SmallActionProtocol {
     /// The avaible options for this Action
     static var options: [Option] = [.help]
     
+    
     static func showOnHelp() {
-        
+        CraidIO.communicate(message: "Get the current Time in any Capital")
     }
     
     static func execute(args : [Any]?) {
-        CraidIO.showOnNotEnoughArguments()
+        if args == nil || args?.count ?? 0 < arguemntsCount {
+            CraidIO.showOnNotEnoughArguments()
+        } else {
+            let city : String = args![2] as! String
+            
+            
+        }
     }
     
     static func execute(option: Option) {
-        
+        switch option {
+        case .help:
+            showOnHelp()
+            break
+        default:
+            break
+        }
     }
     
     
