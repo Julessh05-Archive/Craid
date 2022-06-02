@@ -32,8 +32,7 @@ internal struct TimeAction : SmallActionProtocol {
             CraidIO.showOnNotEnoughArguments()
         } else {
             let city : String = args![2] as! String
-            
-            
+            let time : String = TimeValues.getTime(city: city)
         }
     }
     

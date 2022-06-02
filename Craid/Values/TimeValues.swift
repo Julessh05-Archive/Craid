@@ -9,6 +9,8 @@ import Foundation
 
 /// Values that are relevant to the Time Action
 internal struct TimeValues {
+    
+    static private let unknownCity : String = "Unknwon City"
     /// A Dictionary of Citys to their Time Zones
     static private let cityZones : [String : String] = [
         "London" : "",
@@ -18,7 +20,7 @@ internal struct TimeValues {
     ]
     
     /// Converts a City to a Time Zone
-    static internal func cityToZone(city : String) -> String {
+    static private func cityToZone(city : String) -> String {
         for cityZone in cityZones {
             if cityZone.key == city {
                 return cityZone.value
@@ -26,6 +28,12 @@ internal struct TimeValues {
                 continue
             }
         }
-        return "Unknown City"
+        return unknownCity
+    }
+    
+    
+    static internal func getTime(city: String) -> String {
+        let zone : String = cityToZone(city: city)
+        if zone ==
     }
 }
