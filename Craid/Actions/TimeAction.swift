@@ -33,6 +33,7 @@ internal struct TimeAction : SmallActionProtocol {
         } else {
             let city : String = args![2] as! String
             let time : String = TimeValues.getTime(city: city)
+            CraidIO.communicate(message: "Time in \(city): \(time)")
         }
     }
     

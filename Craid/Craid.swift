@@ -194,11 +194,10 @@ internal struct Craid {
         case .clearMoodle:
             ClearMoodleAction.execute(option: option)
             break
-            // TODO: activate as soon as the action is implemented
             // The User wants to know an Option for the Time Action
-            //        case .time:
-            //            TimeAction.execute(option: option)
-            //            break
+        case .time:
+            TimeAction.execute(option: option)
+            break
             
             // User has entered no Option. So the Error Indicator is shown
         case .noAction:
@@ -223,11 +222,10 @@ internal struct Craid {
         case .clearMoodle:
             ClearMoodleAction.execute()
             break
-            // TODO: activate as soon as the action is implemented
             // Execute the Time Action
-            //        case .time:
-            //            TimeAction.execute(args: arguments)
-            //            break
+        case .time:
+            TimeAction.execute(args: arguments)
+            break
             
         case .noAction:
             CraidIO.showOnError()

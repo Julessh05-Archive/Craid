@@ -13,7 +13,7 @@ internal struct TimeValues {
     static private let unknownCity : String = "Unknwon City"
     /// A Dictionary of Citys to their Time Zones
     static private let cityZones : [String : String] = [
-        "London" : "",
+        "London" : "Pacific/Marquesas",
         "Paris" : "",
         "Berlin" : "",
         "Rom" : "",
@@ -34,6 +34,14 @@ internal struct TimeValues {
     
     static internal func getTime(city: String) -> String {
         let zone : String = cityToZone(city: city)
-        if zone ==
+        if zone == unknownCity {
+            return "Error: \(unknownCity)";
+        } else {
+            let formatter : ISO8601DateFormatter = ISO8601DateFormatter()
+            let timeZone : TimeZone? = TimeZone(identifier: zone)
+            formatter.timeZone = timeZone
+            formatter.formatOptions = [.withInternetDateTime]
+            return formatter.string(from: Date())
+        }
     }
 }
