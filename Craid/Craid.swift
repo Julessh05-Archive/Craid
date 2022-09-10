@@ -203,10 +203,6 @@ internal struct Craid {
         case .noAction:
             CraidIO.showOnError()
             break
-            
-        default:
-            CraidIO.showOnError()
-            break
         }
     }
     
@@ -228,10 +224,6 @@ internal struct Craid {
             break
             
         case .noAction:
-            CraidIO.showOnError()
-            break
-            
-        default:
             CraidIO.showOnError()
             break
         }
