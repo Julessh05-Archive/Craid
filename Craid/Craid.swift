@@ -23,39 +23,39 @@ internal enum Option : String {
     
     init(option : String) {
         switch option {
-            
-            // Help Options
-        case HelpOption.optionsShortHand:
-            self = .help
-            break
-            
-        case HelpOption.optionsName:
-            self = .help
-            break
-            
-            // Version Options
-        case VersionOption.optionsShortHand:
-            self = .version
-            break
-            
-        case VersionOption.optionsName:
-            self = .version
-            break
-            
-            // Information Options
-        case InformationOption.optionsName:
-            self = .information
-            break
-            
-            // TODO: find better solution
-            // This shouldn't be done like this
-        case "--info":
-            self = .information
-            break
-            
-        default:
-            self = .unidentified
-            break
+
+                // Help Options
+            case HelpOption.optionsShortHand:
+                self = .help
+                break
+
+            case HelpOption.optionsName:
+                self = .help
+                break
+
+                // Version Options
+            case VersionOption.optionsShortHand:
+                self = .version
+                break
+
+            case VersionOption.optionsName:
+                self = .version
+                break
+
+                // Information Options
+            case InformationOption.optionsName:
+                self = .information
+                break
+
+                // TODO: find better solution
+                // This shouldn't be done like this
+            case "--info":
+                self = .information
+                break
+
+            default:
+                self = .unidentified
+                break
         }
     }
 }
@@ -73,24 +73,28 @@ private enum Action : String {
     
     init(action : String) {
         switch action {
-            
-            // Clear Moodle Actions
-        case ClearMoodleAction.actionName:
-            self = .clearMoodle
-            break
-            
-        case ClearMoodleAction.actionShortHand:
-            self = .clearMoodle
-            break
-            
-            // Get Time Action
-        case TimeAction.actionName:
-            self = .time
-            break
-            
-        default:
-            self = .noAction
-            break
+
+                // Clear Moodle Actions
+            case ClearMoodleAction.actionName:
+                self = .clearMoodle
+                break
+
+            case ClearMoodleAction.actionShortHand:
+                self = .clearMoodle
+                break
+
+                // Get Time Action
+            case TimeAction.actionName:
+                self = .time
+                break
+
+            case TimeAction.actionShortHand:
+                self = .time
+                break;
+
+            default:
+                self = .noAction
+                break
         }
     }
 }
@@ -125,6 +129,8 @@ internal struct Craid {
             }
         } else if Converter.isOption(string: optionArgument){
             executeOption(option: getOption(option: optionArgument))
+        } else if CommandLine.argc > 2 {
+            executeAction(action: getAction(), arguments: [CommandLine.arguments[2], CommandLine.arguments[3]])
         } else {
             executeAction(action: getAction())
         }
@@ -143,45 +149,45 @@ internal struct Craid {
     /// Checks the Option and executes the Action connected to it
     private func executeOption(option: Option) -> Void {
         switch option {
-            // Show Help
-        case .help:
-            HelpOption.execute()
-            break
-            
-            // Return the Version Number of this Tool
-        case .version:
-            VersionOption.execute()
-            break
-            
-            // Show the Information about this Tool
-        case .information:
-            InformationOption.execute()
-            break
-            
-            /// Craid cound't  the Option, so the Help is shown
-        default:
-            CraidIO.showOnError()
-            break
+                // Show Help
+            case .help:
+                HelpOption.execute()
+                break
+
+                // Return the Version Number of this Tool
+            case .version:
+                VersionOption.execute()
+                break
+
+                // Show the Information about this Tool
+            case .information:
+                InformationOption.execute()
+                break
+
+                /// Craid cound't  the Option, so the Help is shown
+            default:
+                CraidIO.showOnError()
+                break
         }
     }
     
     /// Checks the Option and the Option behind it to execute it
     private func executeOption(option: Option, secondOption: Option) -> Void {
         switch option {
-        case .help:
-            HelpOption.execute(option: secondOption)
-            break
-            
-        case .version:
-            VersionOption.execute(option: secondOption)
-            
-        case .information:
-            InformationOption.execute(option: secondOption)
-            break
-            
-        default:
-            CraidIO.showOnError()
-            break
+            case .help:
+                HelpOption.execute(option: secondOption)
+                break
+
+            case .version:
+                VersionOption.execute(option: secondOption)
+
+            case .information:
+                InformationOption.execute(option: secondOption)
+                break
+
+            default:
+                CraidIO.showOnError()
+                break
         }
     }
     
@@ -190,19 +196,19 @@ internal struct Craid {
     /// This Method is called when the Action has an Option
     private func executeAction(action : Action, option : Option) -> Void {
         switch action {
-            // User wants the Moodle Directory to be cleared
-        case .clearMoodle:
-            ClearMoodleAction.execute(option: option)
-            break
-            // The User wants to know an Option for the Time Action
-        case .time:
-            TimeAction.execute(option: option)
-            break
-            
-            // User has entered no Option. So the Error Indicator is shown
-        case .noAction:
-            CraidIO.showOnError()
-            break
+                // User wants the Moodle Directory to be cleared
+            case .clearMoodle:
+                ClearMoodleAction.execute(option: option)
+                break
+                // The User wants to know an Option for the Time Action
+            case .time:
+                TimeAction.execute(option: option)
+                break
+
+                // User has entered no Option. So the Error Indicator is shown
+            case .noAction:
+                CraidIO.showOnError()
+                break
         }
     }
     
@@ -213,19 +219,19 @@ internal struct Craid {
     /// any arguments passed
     private func executeAction(action : Action, arguments : [Any]? = nil) -> Void {
         switch action {
-            
-            // Execute the Clear Moodle Action and delete the Documents Folder in the Container
-        case .clearMoodle:
-            ClearMoodleAction.execute()
-            break
-            // Execute the Time Action
-        case .time:
-            TimeAction.execute(args: arguments)
-            break
-            
-        case .noAction:
-            CraidIO.showOnError()
-            break
+
+                // Execute the Clear Moodle Action and delete the Documents Folder in the Container
+            case .clearMoodle:
+                ClearMoodleAction.execute()
+                break
+                // Execute the Time Action
+            case .time:
+                TimeAction.execute(args: arguments)
+                break
+
+            case .noAction:
+                CraidIO.showOnError()
+                break
         }
     }
 }
