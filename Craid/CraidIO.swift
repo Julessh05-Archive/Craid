@@ -58,7 +58,7 @@ internal struct CraidIO {
         communicate(message: "craid clear-moodle or craid cm to clear your moodle documents directory")
         communicate(message: "")
         // TODO: show after implementing the Function
-        //communicate(message: "craid time in cityname to get the current time in another city (currently only capitals)")
+        //communicate(message: "craid time in {cityname} to get the current time in another city (currently only capitals)")
         communicate(message: "Aditional Information:")
         communicate(message: "Type -h or --help after an action to get more specific information about that action")
     }
@@ -68,7 +68,7 @@ internal struct CraidIO {
     static internal func showOnError() -> Void {
         communicate(message: "Something went wrong")
         communicate(message: "Either this action is not avaible, you've got a typo, or something internal went wrong")
-        communicate(message: "Please check the Spelling for Typos")
+        communicate(message: "Please check the spelling for Typos")
         communicate(message: "Please excuse the Circumstances, we're working hard to find and remove all Bugs")
         communicate(message: "If you have concerns, contact the Administrator through a Github Issue")
     }

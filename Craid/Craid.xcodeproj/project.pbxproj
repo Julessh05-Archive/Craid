@@ -35,8 +35,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3F1793A22820432C00D4488D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Translations.strings; sourceTree = "<group>"; };
-		3F1793A42820432E00D4488D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Translations.strings; sourceTree = "<group>"; };
 		3F21453F28192C510064D8F9 /* OptionsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsProtocols.swift; sourceTree = "<group>"; };
 		3F48802B281AFBE00022B7C9 /* VersionOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionOption.swift; sourceTree = "<group>"; };
 		3F677E5F2823D326007C6FC1 /* TimeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAction.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 		3F7B72CD28186B2D007E0AA2 /* Values */ = {
 			isa = PBXGroup;
 			children = (
-				3F1793A32820432C00D4488D /* Translations.strings */,
 				3FF01C91283BE9B4003D2733 /* TimeValues.swift */,
 			);
 			path = Values;
@@ -175,7 +172,6 @@
 			knownRegions = (
 				en,
 				Base,
-				de,
 			);
 			mainGroup = 3F6BC10C27FEDC3A000A2C5A;
 			productRefGroup = 3F6BC11627FEDC3A000A2C5A /* Products */;
@@ -209,18 +205,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		3F1793A32820432C00D4488D /* Translations.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3F1793A22820432C00D4488D /* en */,
-				3F1793A42820432E00D4488D /* de */,
-			);
-			name = Translations.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3F6BC11A27FEDC3A000A2C5A /* Debug */ = {
