@@ -69,7 +69,6 @@
 		3F21453E28192C440064D8F9 /* Options */ = {
 			isa = PBXGroup;
 			children = (
-				3F21453F28192C510064D8F9 /* OptionsProtocols.swift */,
 				3FE026522819CCD70035C426 /* HelpOption.swift */,
 				3F48802B281AFBE00022B7C9 /* VersionOption.swift */,
 				3F986728283AAFDC00D3B5D8 /* InformationOption.swift */,
@@ -88,6 +87,7 @@
 		3F6BC10C27FEDC3A000A2C5A = {
 			isa = PBXGroup;
 			children = (
+				84B52ACD29FBCA36009B3EAF /* Protocols */,
 				3FF01C90283BE979003D2733 /* Storage */,
 				3F677E612823D527007C6FC1 /* Logic */,
 				3F21453E28192C440064D8F9 /* Options */,
@@ -127,13 +127,29 @@
 		3FF333322818807D0053994C /* Actions */ = {
 			isa = PBXGroup;
 			children = (
+				84B52ACC29FBCA21009B3EAF /* Initialization */,
 				3FF33333281880890053994C /* ClearMoodleAction.swift */,
-				3FF33335281880BB0053994C /* ActionProtocols.swift */,
 				3F677E5F2823D326007C6FC1 /* TimeAction.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		84B52ACC29FBCA21009B3EAF /* Initialization */ = {
+			isa = PBXGroup;
+			children = (
 				844852C229BE337300B2EDF8 /* InitFlutterAction.swift */,
 				844852C429BE339400B2EDF8 /* InitSwiftAction.swift */,
 			);
-			path = Actions;
+			path = Initialization;
+			sourceTree = "<group>";
+		};
+		84B52ACD29FBCA36009B3EAF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3F21453F28192C510064D8F9 /* OptionsProtocols.swift */,
+				3FF33335281880BB0053994C /* ActionProtocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
